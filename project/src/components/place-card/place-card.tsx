@@ -1,17 +1,17 @@
 import {Link} from 'react-router-dom';
+import React from 'react';
 import {RoomOffer} from '../../types/offer';
 import {calculateStarRating} from '../../utils/utils';
 
 type PageProps = {
   offer: RoomOffer;
-  onActiveChange: (offer: RoomOffer) => void;
 }
 
-function PlaceCard({offer, onActiveChange}: PageProps): JSX.Element {
+function PlaceCard({offer}: PageProps): JSX.Element {
   const {title, price, type, previewImage, rating, isPremium, id} = offer;
 
   return (
-    <article className="cities__card place-card" onMouseOver={() => onActiveChange(offer)}>
+    <React.Fragment>
       {isPremium ?
         <div className="place-card__mark">
           <span>Premium</span>
@@ -41,7 +41,7 @@ function PlaceCard({offer, onActiveChange}: PageProps): JSX.Element {
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
-    </article>
+    </React.Fragment>
   );
 }
 

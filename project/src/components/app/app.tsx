@@ -7,20 +7,22 @@ import RoomPage from '../../pages/room-page/room-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import {RoomOffer} from '../../types/offer';
 import {Review} from '../../types/review';
+import {City} from '../../types/city';
 
 type AppScreenProps = {
   offers: RoomOffer[];
   reviews: Review[];
+  cities: City[];
 }
 
-function App({offers, reviews}: AppScreenProps): JSX.Element {
+function App({offers, reviews, cities}: AppScreenProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             index
-            element={<MainPage offers={offers}/>}
+            element={<MainPage offers={offers} cities={cities}/>}
           />
           <Route
             path={AppRoute.Login}

@@ -5,13 +5,13 @@ export const offers: RoomOffer[] = [
     bedrooms: 2,
     city: {
       location: {
-        latitude: 34.69374,
-        longitude: 135.50218,
+        latitude: 52.370216,
+        longitude: 4.895168,
         zoom: 10,
       },
-      name: 'Osaka',
+      name: 'Amsterdam',
     },
-    description: 'At Hotel Nikko Osaka you will find restaurants and lounges that allow you to enjoy the changing colors of gingko trees lining Midosuji Avenue throughout the different seasons.',
+    description: 'At Hotel Nikko you will find restaurants and lounges that allow you to enjoy the changing colors of gingko trees lining Midosuji Avenue throughout the different seasons.',
     goods: ['Air conditioning', 'Room service', 'Refrigerator', 'Flatscreen TV'],
     host: {
       avatarUrl: 'https://i.pinimg.com/736x/df/4d/0a/df4d0a54c2a2a5c6576299e63ad33cc8--anime-girls-support.jpg',
@@ -25,9 +25,9 @@ export const offers: RoomOffer[] = [
       'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/7e/42/c6/lounge.jpg?w=600&h=-1&s=1'],
     isPremium: true,
     location: {
-      latitude: 34.69354,
-      longitude: 134.50518,
-      zoom: 10,
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 8,
     },
     maxAdults: 4,
     previewImage: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/d4/44/b6/exterior-view.jpg?w=600&h=-1&s=1',
@@ -41,9 +41,9 @@ export const offers: RoomOffer[] = [
     bedrooms: 1,
     city: {
       location: {
-        latitude: 52.37403,
-        longitude: 4.88969,
-        zoom: 8,
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10,
       },
       name: 'Amsterdam',
     },
@@ -62,8 +62,8 @@ export const offers: RoomOffer[] = [
       'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/54/2e/cc/photo0jpg.jpg?w=1200&h=-1&s=1'],
     isPremium: true,
     location: {
-      latitude: 52.37403,
-      longitude: 4.88969,
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
       zoom: 8,
     },
     maxAdults: 2,
@@ -78,11 +78,11 @@ export const offers: RoomOffer[] = [
     bedrooms: 2,
     city: {
       location: {
-        latitude: 48.85341,
-        longitude: 2.3488,
+        latitude: 52.370216,
+        longitude: 4.895168,
         zoom: 10,
       },
-      name: 'Paris',
+      name: 'Amsterdam',
     },
     description: 'The Novotel Paris Les Halles is a 4 star hotel in the centre of Paris with direct Metro and RER train connections to Charles de Gaulle and Orly airports, the major train stations, Disneyland Paris and major Paris attractions including the Pompidou Centre, the Louvre, Notre Dame and more.',
     goods: ['Private balcony', 'Room service', 'Refrigerator', 'Flatscreen TV', 'Extra long beds'],
@@ -98,15 +98,15 @@ export const offers: RoomOffer[] = [
       'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/76/21/ae/novotel-paris-les-halles.jpg?w=1200&h=-1&s=1'],
     isPremium: false,
     location: {
-      latitude: 48.85341,
-      longitude: 2.3488,
-      zoom: 10,
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
+      zoom: 8,
     },
     maxAdults: 4,
     previewImage: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/79/c7/90/novotel-paris-les-halles.jpg?w=1200&h=-1&s=1',
     price: 2300,
     rating: 4,
-    title: 'Novotel Paris Les Halles',
+    title: 'Novotel Les Halles',
     type: 'Apartment'
   },
 
@@ -118,9 +118,9 @@ export const offers: RoomOffer[] = [
         longitude: 9.99302,
         zoom: 10,
       },
-      name: 'Hamburg',
+      name: 'Amsterdam',
     },
-    description: 'The Madison Hotel Hamburg with its 166 rooms is ideally situated between Elbphilharmonie, Speicherstadt and the city, just below the town\'s emblem – St. Michaelis church.',
+    description: 'The Madison Hotel with its 166 rooms is ideally situated between Elbphilharmonie, Speicherstadt and the city, just below the town\'s emblem – St. Michaelis church.',
     goods: ['Room service', 'Refrigerator', 'Flatscreen TV'],
     host: {
       avatarUrl: 'https://st2.depositphotos.com/2668729/5747/v/950/depositphotos_57474431-stock-illustration-avatar-with-a-dollar-sign.jpg',
@@ -134,15 +134,15 @@ export const offers: RoomOffer[] = [
       'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/e4/af/59/check-in.jpg?w=1200&h=-1&s=1'],
     isPremium: true,
     location: {
-      latitude: 53.55073,
-      longitude: 9.99302,
-      zoom: 10,
+      latitude: 52.370216,
+      longitude: 4.895168,
+      zoom: 8,
     },
     maxAdults: 2,
     previewImage: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/75/0b/ac/location-madison-hotel.jpg?w=1200&h=-1&s=1',
     price: 1100,
     rating: 3,
-    title: 'THE MADISON Hotel Hamburg',
+    title: 'THE MADISON Hotel',
     type: 'Hotel'
   }
 ];
