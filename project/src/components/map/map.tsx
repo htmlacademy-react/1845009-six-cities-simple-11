@@ -10,6 +10,7 @@ type PageProps = {
   offers: RoomOffer[];
   activeCard: RoomOffer | undefined;
   city: City;
+  classMap: string;
 }
 
 const defaultCustomIcon = new Icon({
@@ -24,7 +25,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map({offers, activeCard, city}: PageProps): JSX.Element {
+function Map({offers, activeCard, city, classMap}: PageProps): JSX.Element {
   const {location} = city;
   const mapRef = useRef(null);
   const map = useMap(mapRef, location);
@@ -47,7 +48,7 @@ function Map({offers, activeCard, city}: PageProps): JSX.Element {
       });
     }
   }, [map, offers, activeCard]);
-  return <div style={{height: '500px'}} ref={mapRef}></div>;
+  return <section className={`${classMap}__map map`} ref={mapRef}></section>;
 }
 
 export default Map;

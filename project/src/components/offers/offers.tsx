@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {RoomOffer} from '../../types/offer';
-import PlaceCard from '../../components/place-card/place-card';
+import PlaceCard from '../place-card/place-card';
 import Map from '../map/map';
 import {City} from '../../types/city';
 
@@ -9,15 +9,12 @@ type PageProps = {
   currentCity: City;
 }
 
-function OffersList({offers, currentCity}: PageProps): JSX.Element {
+function Offers({offers, currentCity}: PageProps): JSX.Element {
   const [activeCard, setActiveCard] = useState<RoomOffer | undefined>(undefined);
+
   const handleActiveCard = (card: RoomOffer):void => {
     setActiveCard(card);
   };
-  const offersComponents = offers.map((offer) => (
-    <article className="cities__card place-card" key={offer.id} onMouseOver={() => handleActiveCard(offer)}>
-      <PlaceCard offer={offer}/>
-    </article>));
 
   return (
     <div className="cities">
@@ -33,7 +30,7 @@ function OffersList({offers, currentCity}: PageProps): JSX.Element {
                 <use xlinkHref="#icon-arrow-select"></use>
               </svg>
             </span>
-            <ul className="places__options places__options--custom places__options--opened">
+            <ul className="places__options places__options--custom places__options--closed">
               <li className="places__option places__option--active" tabIndex={0}>Popular</li>
               <li className="places__option" tabIndex={0}>Price: low to high</li>
               <li className="places__option" tabIndex={0}>Price: high to low</li>
@@ -41,17 +38,20 @@ function OffersList({offers, currentCity}: PageProps): JSX.Element {
             </ul>
           </form>
           <div className="cities__places-list places__list tabs__content">
-            {offersComponents}
+            {
+              offers.map((offer) => (
+                <article className="cities__card place-card" key={offer.id} onMouseOver={() => handleActiveCard(offer)}>
+                  <PlaceCard offer={offer} cardClass="cities"/>
+                </article>))
+            }
           </div>
         </section>
         <div className="cities__right-section">
-          <section className="cities__map map">
-            <Map offers={offers} activeCard={activeCard} city={currentCity}/>
-          </section>
+          <Map offers={offers} activeCard={activeCard} city={currentCity} classMap="cities"/>
         </div>
       </div>
     </div>
   );
 }
 
-export default OffersList;
+export default Offers;
