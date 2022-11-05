@@ -1,17 +1,23 @@
 import {useState} from 'react';
 import {RoomOffer} from '../../types/offer';
 import PlaceCard from '../../components/place-card/place-card';
+import Map from '../map/map';
+import {City} from '../../types/city';
 
 type PageProps = {
   offers: RoomOffer[];
+  currentCity: City;
 }
 
-function OffersList({offers}: PageProps): JSX.Element {
-  const [, setActiveCard] = useState('');
+function OffersList({offers, currentCity}: PageProps): JSX.Element {
+  const [activeCard, setActiveCard] = useState<RoomOffer | undefined>(undefined);
   const handleActiveCard = (card: RoomOffer):void => {
-    setActiveCard(card.id.toString());
+    setActiveCard(card);
   };
-  const offersComponents = offers.map((offer) => <PlaceCard key={offer.id} offer={offer} onActiveChange={handleActiveCard}/>);
+  const offersComponents = offers.map((offer) => (
+    <article className="cities__card place-card" key={offer.id} onMouseOver={() => handleActiveCard(offer)}>
+      <PlaceCard offer={offer}/>
+    </article>));
 
   return (
     <div className="cities">
@@ -39,7 +45,9 @@ function OffersList({offers}: PageProps): JSX.Element {
           </div>
         </section>
         <div className="cities__right-section">
-          <section className="cities__map map"></section>
+          <section className="cities__map map">
+            <Map offers={offers} activeCard={activeCard} city={currentCity}/>
+          </section>
         </div>
       </div>
     </div>

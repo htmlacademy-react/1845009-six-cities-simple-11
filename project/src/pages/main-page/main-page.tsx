@@ -3,12 +3,16 @@ import {Helmet} from 'react-helmet-async';
 import Logo from '../../components/logo/logo';
 import OffersList from '../../components/offers-list/offers-list';
 import {RoomOffer} from '../../types/offer';
+import {City} from '../../types/city';
 
 type MainPageProps = {
   offers: RoomOffer[];
+  cities: City[];
 };
 
-function MainPage({offers}: MainPageProps): JSX.Element {
+function MainPage({offers, cities}: MainPageProps): JSX.Element {
+
+  const currentCity = cities[0];
 
   return (
     <React.Fragment>
@@ -77,7 +81,7 @@ function MainPage({offers}: MainPageProps): JSX.Element {
             </ul>
           </section>
         </div>
-        <OffersList offers={offers}/>
+        <OffersList offers={offers} currentCity={currentCity}/>
       </main>
     </React.Fragment>
   );
