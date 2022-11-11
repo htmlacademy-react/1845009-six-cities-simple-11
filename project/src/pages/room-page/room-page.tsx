@@ -146,7 +146,9 @@ function RoomPage({offers, reviews}: PageProps): JSX.Element {
               <Reviews reviews={currentReviews} />
             </div>
           </div>
-          <Map offers={nearOffers} activeCard={currentOffer} city={currentOffer.city} classMap="property"/>
+          <section className="property__map map">
+            <Map offers={nearOffers} activeCard={currentOffer} city={currentOffer.city}/>
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">

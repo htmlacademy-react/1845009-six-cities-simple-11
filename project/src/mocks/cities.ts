@@ -8,6 +8,15 @@ export const cities: City[] = [
       zoom: 10,
     },
     name: 'Amsterdam'
-  }
+  },
+  {
+    location: {
+      latitude: 48.85341,
+      longitude: 2.3488,
+      zoom: 10,
+    },
+    name: 'Paris'
+  },
+
 ];
 

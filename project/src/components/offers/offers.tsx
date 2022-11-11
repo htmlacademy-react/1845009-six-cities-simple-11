@@ -21,7 +21,7 @@ function Offers({offers, currentCity}: PageProps): JSX.Element {
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">{offers.length} places to stay in Amsterdam</b>
+          <b className="places__found">{offers.length} places to stay in {currentCity.name}</b>
           <form className="places__sorting" action="#" method="get">
             <span className="places__sorting-caption">Sort by</span>
             <span className="places__sorting-type" tabIndex={0}>
@@ -47,7 +47,9 @@ function Offers({offers, currentCity}: PageProps): JSX.Element {
           </div>
         </section>
         <div className="cities__right-section">
-          <Map offers={offers} activeCard={activeCard} city={currentCity} classMap="cities"/>
+          <section className="cities__map map">
+            <Map offers={offers} activeCard={activeCard} city={currentCity}/>
+          </section>
         </div>
       </div>
     </div>
