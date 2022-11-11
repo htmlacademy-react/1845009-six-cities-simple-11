@@ -144,5 +144,41 @@ export const offers: RoomOffer[] = [
     rating: 3,
     title: 'THE MADISON Hotel',
     type: 'Hotel'
+  },
+
+  {
+    bedrooms: 2,
+    city: {
+      location: {
+        latitude: 48.85341,
+        longitude: 2.3488,
+        zoom: 10,
+      },
+      name: 'Paris',
+    },
+    description: 'Whether you want to shop in the heart of the department store neighbourhood or visit one of the main business centres of Paris, Malta Hotel is the place to be.',
+    goods: ['Room service', 'Refrigerator', 'Flatscreen TV', 'Taxi service'],
+    host: {
+      avatarUrl: 'https://www.clipartmax.com/png/full/40-400934_avatar-clip-flower-on-hair-cartoon.png',
+      id: 130,
+      isPro: false,
+      name: 'Mary',
+    },
+    id: 10,
+    images: ['https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/6d/cb/6e/stairs.jpg?w=1200&h=-1&s=1',
+      'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/6d/cb/af/breakfast-room.jpg?w=1200&h=-1&s=1',
+      'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/6d/c4/cd/superior-double-room.jpg?w=1200&h=-1&s=1'],
+    isPremium: true,
+    location: {
+      latitude: 48.75341,
+      longitude: 2.3688,
+      zoom: 8,
+    },
+    maxAdults: 5,
+    previewImage: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/75/0b/ac/location-madison-hotel.jpg?w=1200&h=-1&s=1',
+    price: 2100,
+    rating: 4,
+    title: 'Hotel Malte - Astotel',
+    type: 'Hotel'
   }
 ];

@@ -10,7 +10,6 @@ type PageProps = {
   offers: RoomOffer[];
   activeCard: RoomOffer | undefined;
   city: City;
-  classMap: string;
 }
 
 const defaultCustomIcon = new Icon({
@@ -25,13 +24,13 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map({offers, activeCard, city, classMap}: PageProps): JSX.Element {
-  const {location} = city;
+function Map({offers, activeCard, city}: PageProps): JSX.Element {
   const mapRef = useRef(null);
-  const map = useMap(mapRef, location);
+  const map = useMap(mapRef, city);
 
   useEffect(() => {
     if (map) {
+      map.setView([city.location.latitude, city.location.longitude]);
       offers.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,
@@ -47,8 +46,9 @@ function Map({offers, activeCard, city, classMap}: PageProps): JSX.Element {
           .addTo(map);
       });
     }
-  }, [map, offers, activeCard]);
-  return <section className={`${classMap}__map map`} ref={mapRef}></section>;
+  }, [map, offers, activeCard, city]);
+
+  return <div style={{height: '100%'}} ref={mapRef}></div>;
 }
 
 export default Map;
