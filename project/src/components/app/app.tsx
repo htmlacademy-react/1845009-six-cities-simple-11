@@ -2,6 +2,7 @@ import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {HelmetProvider} from 'react-helmet-async';
 import {AppRoute} from '../../const';
 import {useAppSelector} from '../../hooks';
+import PageLayout from '../../pages/page-layout/page-layout';
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
 import RoomPage from '../../pages/room-page/room-page';
@@ -23,23 +24,25 @@ function App({reviews, cities}: AppScreenProps): JSX.Element {
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
-          <Route
-            index
-            element={<MainPage offers={offers} cities={cities} currentCity={currentCity}/>}
-          />
+          <Route path="/" element={<PageLayout />}>
+            <Route
+              index
+              element={<MainPage offers={offers} cities={cities} currentCity={currentCity}/>}
+            />
+            <Route
+              path="*"
+              element={<NotFoundPage />}
+            />
+            <Route path={AppRoute.Offers}>
+              <Route
+                path={AppRoute.Room}
+                element={<RoomPage offers={offers} reviews={reviews}/>}
+              />
+            </Route>
+          </Route>
           <Route
             path={AppRoute.Login}
             element={<LoginPage />}
-          />
-          <Route path={AppRoute.Offers}>
-            <Route
-              path={AppRoute.Room}
-              element={<RoomPage offers={offers} reviews={reviews}/>}
-            />
-          </Route>
-          <Route
-            path="*"
-            element={<NotFoundPage />}
           />
         </Routes>
       </BrowserRouter>
