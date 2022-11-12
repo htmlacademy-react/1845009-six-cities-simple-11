@@ -18,5 +18,14 @@ export const cities: City[] = [
     name: 'Paris'
   },
 
+  {
+    location: {
+      latitude: 51.22172,
+      longitude: 6.77616,
+      zoom: 10
+    },
+    name: 'Dusseldorf'
+  }
+
 ];
 
