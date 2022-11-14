@@ -180,5 +180,41 @@ export const offers: RoomOffer[] = [
     rating: 4,
     title: 'Hotel Malte - Astotel',
     type: 'Hotel'
+  },
+
+  {
+    bedrooms: 1,
+    city: {
+      location: {
+        latitude: 48.85341,
+        longitude: 2.3488,
+        zoom: 10,
+      },
+      name: 'Paris',
+    },
+    description: 'Whether you want to shop in the heart of the department store neighbourhood or visit one of the main business centres of Paris, Malta Hotel is the place to be.',
+    goods: ['Room service', 'Refrigerator', 'Flatscreen TV', 'Taxi service', 'Coffee / tea maker'],
+    host: {
+      avatarUrl: 'https://www.clipartmax.com/png/full/40-400934_avatar-clip-flower-on-hair-cartoon.png',
+      id: 136,
+      isPro: true,
+      name: 'Amandine',
+    },
+    id: 14,
+    images: ['https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/8c/dc/59/450741-exterior.jpg?w=900&h=-1&s=1',
+      'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/6d/cb/af/breakfast-room.jpg?w=1200&h=-1&s=1',
+      'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/8c/dc/4e/450741-lobby.jpg?w=900&h=-1&s=1'],
+    isPremium: true,
+    location: {
+      latitude: 48.72341,
+      longitude: 2.4588,
+      zoom: 8,
+    },
+    maxAdults: 2,
+    previewImage: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/8c/dc/04/450741-guest-room.jpg?w=900&h=-1&s=1',
+    price: 1400,
+    rating: 5,
+    title: 'Hotel La Comtesse',
+    type: 'Apartment'
   }
 ];
