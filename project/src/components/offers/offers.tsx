@@ -1,17 +1,27 @@
 import {useState} from 'react';
+import {useAppSelector} from '../../hooks';
 import {RoomOffer} from '../../types/offer';
 import PlaceCard from '../place-card/place-card';
 import Sorting from '../sorting/sorting';
 import Map from '../map/map';
 import {City} from '../../types/city';
+import {getOffersByCity} from '../../utils/utils';
+import NotFoundOffers from '../../components/not-found-offers/not-found-offers';
+import { sortOffers } from '../../utils/sorting';
 
 type PageProps = {
-  offers: RoomOffer[];
   currentCity: City;
 }
 
-function Offers({offers, currentCity}: PageProps): JSX.Element {
+function Offers({currentCity}: PageProps): JSX.Element {
   const [activeCard, setActiveCard] = useState<RoomOffer | undefined>(undefined);
+  let offers = useAppSelector((state) => getOffersByCity(state.offers, currentCity));
+  const sortType = useAppSelector((state) => state.sortType);
+  offers = sortOffers(offers, sortType);
+
+  if (offers.length === 0) {
+    return <NotFoundOffers currentCity={currentCity.name} />;
+  }
 
   const handleActiveCard = (card: RoomOffer):void => {
     setActiveCard(card);

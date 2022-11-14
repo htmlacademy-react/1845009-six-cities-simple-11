@@ -4,7 +4,6 @@ import Logo from '../../components/logo/logo';
 import { Outlet } from 'react-router-dom';
 
 function PageLayout(): JSX.Element {
-
   return (
     <React.Fragment>
       <Helmet>

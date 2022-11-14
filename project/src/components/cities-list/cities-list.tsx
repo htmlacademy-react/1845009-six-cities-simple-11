@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import {useAppDispatch} from '../../hooks';
-import {changeCityAction, getOffersAction} from '../../store/action';
+import {changeCityAction} from '../../store/action';
 import {City} from '../../types/city';
 
 type PageProps = {
@@ -19,7 +19,6 @@ function CitiesList({cities, currentCity}: PageProps): JSX.Element {
             <Link className={`locations__item-link ${city.name === currentCity.name ? 'tabs__item tabs__item--active' : ''}`}
               onClick={() => {
                 dispatch(changeCityAction({city}));
-                dispatch(getOffersAction({city}));
               }}
               to=""
             >

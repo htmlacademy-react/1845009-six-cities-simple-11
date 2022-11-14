@@ -1,18 +1,18 @@
 import {useParams} from 'react-router-dom';
-import {RoomOffer} from '../../types/offer';
 import NotFoundPage from '../not-found-page/not-found-page';
 import PlaceCard from '../../components/place-card/place-card';
+import {useAppSelector} from '../../hooks';
 import Reviews from '../../components/reviews/reviews';
 import {calculateStarRating} from '../../utils/utils';
 import {Review} from '../../types/review';
 import Map from '../../components/map/map';
 
 type PageProps = {
-  offers: RoomOffer[];
   reviews: Review[];
 }
 
-function RoomPage({offers, reviews}: PageProps): JSX.Element {
+function RoomPage({reviews}: PageProps): JSX.Element {
+  const offers = useAppSelector((state) => state.offers);
   const params = useParams();
   const currentOffer = offers.find((o) => o.id.toString() === params.id);
   if (!currentOffer) {
