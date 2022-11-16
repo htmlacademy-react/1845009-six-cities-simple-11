@@ -26,3 +26,5 @@ export type RoomOffer = {
   title: string;
   type: string;
 };
+
+export type Offers = RoomOffer[];

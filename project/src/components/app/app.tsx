@@ -7,19 +7,20 @@ import LoginPage from '../../pages/login-page/login-page';
 import RoomPage from '../../pages/room-page/room-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import {Review} from '../../types/review';
-import {City} from '../../types/city';
 import ScrollToTop from '../scroll-to-top/scroll-to-top';
-import { useAppDispatch } from '../../hooks';
-import { getOffersAction } from '../../store/action';
+import {useAppSelector} from '../../hooks';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 type AppScreenProps = {
   reviews: Review[];
-  cities: City[];
 }
 
-function App({reviews, cities}: AppScreenProps): JSX.Element {
-  const dispatch = useAppDispatch();
-  dispatch(getOffersAction());
+function App({reviews}: AppScreenProps): JSX.Element {
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  if (isOffersDataLoading) {
+    return (
+      <LoadingScreen />);
+  }
 
   return (
     <HelmetProvider>
@@ -29,7 +30,7 @@ function App({reviews, cities}: AppScreenProps): JSX.Element {
           <Route path="/" element={<PageLayout />}>
             <Route
               index
-              element={<MainPage cities={cities}/>}
+              element={<MainPage />}
             />
             <Route
               path="*"
