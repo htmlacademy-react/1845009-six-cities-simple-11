@@ -25,7 +25,34 @@ export const cities: City[] = [
       zoom: 10
     },
     name: 'Dusseldorf'
-  }
+  },
+
+  {
+    location: {
+      latitude: 51.22172,
+      longitude: 6.77616,
+      zoom: 10
+    },
+    name: 'Hamburg'
+  },
+
+  {
+    location: {
+      latitude: 51.22172,
+      longitude: 6.77616,
+      zoom: 10
+    },
+    name: 'Cologne'
+  },
+
+  {
+    location: {
+      latitude: 51.22172,
+      longitude: 6.77616,
+      zoom: 10
+    },
+    name: 'Brussels'
+  },
 
 ];
 

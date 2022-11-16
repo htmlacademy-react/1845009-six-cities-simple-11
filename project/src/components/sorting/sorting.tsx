@@ -10,7 +10,7 @@ function Sorting(): JSX.Element {
   };
   const activeSort = useAppSelector((state) => state.sortType);
   const dispatch = useAppDispatch();
-  const sortingHandler = (sortType: string) => {
+  const sortingHandler = (sortType: SortTypes) => {
     optionsHandler();
     if (sortType === activeSort) {
       return;
