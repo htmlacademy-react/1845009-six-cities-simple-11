@@ -1,6 +1,6 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {HelmetProvider} from 'react-helmet-async';
-import {AppRoute} from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../const';
 import PageLayout from '../../pages/page-layout/page-layout';
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
@@ -16,8 +16,10 @@ type AppScreenProps = {
 }
 
 function App({reviews}: AppScreenProps): JSX.Element {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
-  if (isOffersDataLoading) {
+
+  if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
     return (
       <LoadingScreen />);
   }
