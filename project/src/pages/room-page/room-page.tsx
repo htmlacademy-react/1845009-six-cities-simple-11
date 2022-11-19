@@ -1,31 +1,33 @@
 import {useParams} from 'react-router-dom';
-import NotFoundPage from '../not-found-page/not-found-page';
 import PlaceCard from '../../components/place-card/place-card';
 import {useAppSelector} from '../../hooks';
 import Reviews from '../../components/reviews/reviews';
 import {calculateStarRating} from '../../utils/utils';
-import {Review} from '../../types/review';
+import {fetchCommentsAction, fetchNearOffersAction, fetchOfferAction} from '../../store/api-actions';
+import {store} from '../../store/index';
 import Map from '../../components/map/map';
+import {useEffect} from 'react';
+import LoadingScreen from '../../components/loading-screen/loading-screen';
 
-type PageProps = {
-  reviews: Review[];
-}
-
-function RoomPage({reviews}: PageProps): JSX.Element {
-  const offers = useAppSelector((state) => state.offers);
+function RoomPage(): JSX.Element {
   const params = useParams();
-  const currentOffer = offers.find((o) => o.id.toString() === params.id);
+  useEffect(() => {
+    store.dispatch(fetchOfferAction(Number(params.id)));
+    store.dispatch(fetchCommentsAction(Number(params.id)));
+    store.dispatch(fetchNearOffersAction(Number(params.id)));
+  },[params.id]);
+
+  const currentOffer = useAppSelector((state) => state.currentOffer);
+  const nearOffers = useAppSelector((state) => state.currentNearOffers);
+
   if (!currentOffer) {
     return (
-      <NotFoundPage />
+      <LoadingScreen />
     );
   }
-  const currentReviews: Review[] = [];
-  reviews.forEach((review) => review.hotelId === currentOffer.id ? currentReviews.push(review) : false );
 
   const {title, type, bedrooms, description, price, goods, images, host, isPremium, rating, maxAdults} = currentOffer;
 
-  const nearOffers = offers.filter((offer) => offer.id !== currentOffer.id);
 
   return (
     <main className="page__main page__main--property">
@@ -108,16 +110,16 @@ function RoomPage({reviews}: PageProps): JSX.Element {
                 </p>
               </div>
             </div>
-            <Reviews reviews={currentReviews} />
+            <Reviews currentId={currentOffer.id}/>
           </div>
         </div>
         <section className="property__map map">
-          <Map offers={nearOffers} activeCard={currentOffer} city={currentOffer.city}/>
+          <Map offers={nearOffers} city={currentOffer.city}/>
         </section>
       </section>
       <div className="container">
         <section className="near-places places">
-          <h2 className="near-places__title">Other places in the neighbourhood</h2>
+          <h2 className="near-places__title">Other places in the neighborhood</h2>
           <div className="near-places__list places__list">
             {
               nearOffers.map((offer) => (

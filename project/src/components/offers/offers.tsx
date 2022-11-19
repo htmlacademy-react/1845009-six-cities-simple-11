@@ -7,7 +7,7 @@ import Map from '../map/map';
 import {City} from '../../types/city';
 import {getOffersByCity} from '../../utils/utils';
 import NotFoundOffers from '../../components/not-found-offers/not-found-offers';
-import { sortOffers } from '../../utils/sorting';
+import {sortOffers} from '../../utils/sorting';
 
 type PageProps = {
   currentCity: City;

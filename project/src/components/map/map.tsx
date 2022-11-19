@@ -8,7 +8,7 @@ import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
 
 type PageProps = {
   offers: RoomOffer[];
-  activeCard: RoomOffer | undefined;
+  activeCard?: RoomOffer | undefined;
   city: City;
 }
 
