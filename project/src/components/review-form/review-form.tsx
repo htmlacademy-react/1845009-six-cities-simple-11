@@ -2,8 +2,7 @@ import React from 'react';
 import {useState} from 'react';
 import {ratings} from '../../const';
 import {useAppDispatch} from '../../hooks';
-import {fetchSendCommentAction, fetchCommentsAction} from '../../store/api-actions';
-import {store} from '../../store/index';
+import {fetchSendCommentAction} from '../../store/api-actions';
 
 type propType = {
   currentId: number;
@@ -13,13 +12,12 @@ function ReviewForm({currentId}: propType): JSX.Element {
   const [commentItem, setComment] = useState({text: '', rating: 0});
   const dispatch = useAppDispatch();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const id = currentId;
     const comment = commentItem.text;
     const rating = commentItem.rating;
-    dispatch(fetchSendCommentAction({id, comment, rating}))
-      .then(() => {store.dispatch(fetchCommentsAction(Number(id)));})
-      .then(() => {setComment({text: '', rating: 0});});
+    await dispatch(fetchSendCommentAction({id, comment, rating}));
+    setComment({text: '', rating: 0});
   };
 
   return (

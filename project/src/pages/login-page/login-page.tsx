@@ -2,7 +2,6 @@ import Logo from '../../components/logo/logo';
 import {Helmet} from 'react-helmet-async';
 import {FormEvent, useRef} from 'react';
 import {useAppDispatch} from '../../hooks';
-import {useNavigate} from 'react-router-dom';
 import {loginAction} from '../../store/api-actions';
 import {AuthData} from '../../types/auth-data';
 import {Link} from 'react-router-dom';
@@ -12,7 +11,6 @@ function LoginPage(): JSX.Element {
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
@@ -27,7 +25,6 @@ function LoginPage(): JSX.Element {
         email: emailRef.current.value,
         password: passwordRef.current.value
       });
-      navigate('/');
     }
   };
 

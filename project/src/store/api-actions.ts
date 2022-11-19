@@ -89,6 +89,7 @@ export const fetchSendCommentAction = createAsyncThunk<void, {id: number; commen
   'data/fetchComment',
   async ({id, comment, rating}, {dispatch, extra: api}) => {
     await api.post(`${APIRoute.Comments}/${id}`, {comment, rating});
+    dispatch(fetchCommentsAction(Number(id)));
   }
 );
 
@@ -121,6 +122,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(token);
     dispatch(requireAuthorizationAction(AuthorizationStatus.Auth));
+    dispatch(redirectToRouteAction(AppRoute.Root));
   }
 );
 
