@@ -11,3 +11,5 @@ export type Review = {
     name: string;
   };
 };
+
+export type Comments = Review[];

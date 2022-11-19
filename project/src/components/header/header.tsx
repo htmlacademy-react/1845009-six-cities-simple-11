@@ -3,15 +3,12 @@ import {useAppDispatch, useAppSelector} from '../../hooks';
 import {AuthorizationStatus} from '../../const';
 import {Link} from 'react-router-dom';
 import {logoutAction} from '../../store/api-actions';
-import { setUserEmail } from '../../store/action';
 
 function Header(): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const dispatch = useAppDispatch();
-  const userEmail = useAppSelector((state) => state.userEmail);
   const logOutHandle = () => {
     dispatch(logoutAction());
-    dispatch(setUserEmail(null));
   };
 
   return (
@@ -28,7 +25,7 @@ function Header(): JSX.Element {
                 <li className="header__nav-item user">
                   <div className="header__nav-profile">
                     <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                    <span className="header__user-name user__name">{userEmail}</span>
+                    <span className="header__user-name user__name">{localStorage.email}</span>
                   </div>
                 </li>
                 <li className="header__nav-item">
