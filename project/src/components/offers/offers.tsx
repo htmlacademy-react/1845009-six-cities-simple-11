@@ -4,19 +4,19 @@ import {RoomOffer} from '../../types/offer';
 import PlaceCard from '../place-card/place-card';
 import Sorting from '../sorting/sorting';
 import Map from '../map/map';
-import {City} from '../../types/city';
 import {getOffersByCity} from '../../utils/utils';
 import NotFoundOffers from '../../components/not-found-offers/not-found-offers';
 import {sortOffers} from '../../utils/sorting';
+import {getSortTypes} from '../../store/app-process/selectors';
+import {getOffers} from '../../store/offers-data/selectors';
+import { getCity } from '../../store/app-process/selectors';
 
-type PageProps = {
-  currentCity: City;
-}
-
-function Offers({currentCity}: PageProps): JSX.Element {
+function Offers(): JSX.Element {
+  const currentCity = useAppSelector(getCity);
   const [activeCard, setActiveCard] = useState<RoomOffer | undefined>(undefined);
-  let offers = useAppSelector((state) => getOffersByCity(state.offers, currentCity));
-  const sortType = useAppSelector((state) => state.sortType);
+  const allOffers = useAppSelector(getOffers);
+  let offers = useAppSelector((state) => getOffersByCity(allOffers, currentCity));
+  const sortType = useAppSelector(getSortTypes);
   offers = sortOffers(offers, sortType);
 
   if (offers.length === 0) {

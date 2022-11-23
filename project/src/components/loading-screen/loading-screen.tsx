@@ -1,4 +1,3 @@
-import React from 'react';
 import './loading-screen.css';
 
 function LoadingScreen(): JSX.Element {

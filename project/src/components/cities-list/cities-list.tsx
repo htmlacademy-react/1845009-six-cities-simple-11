@@ -1,15 +1,13 @@
 import {Link} from 'react-router-dom';
 import {useAppDispatch} from '../../hooks';
-import {changeCityAction} from '../../store/action';
-import {City} from '../../types/city';
+import {useAppSelector} from '../../hooks';
+import {changeCity} from '../../store/app-process/app-process';
 import {cities} from '../../const';
+import {getCity} from '../../store/app-process/selectors';
 
-type PageProps = {
-  currentCity: City;
-}
-
-function CitiesList({currentCity}: PageProps): JSX.Element {
+function CitiesList(): JSX.Element {
   const dispatch = useAppDispatch();
+  const currentCity = useAppSelector(getCity);
 
   return (
     <section className="locations container">
@@ -18,7 +16,7 @@ function CitiesList({currentCity}: PageProps): JSX.Element {
           <li className="locations__item" key={city.name}>
             <Link className={`locations__item-link ${city.name === currentCity.name ? 'tabs__item tabs__item--active' : ''}`}
               onClick={() => {
-                dispatch(changeCityAction(city));
+                dispatch(changeCity(city));
               }}
               to=""
             >
