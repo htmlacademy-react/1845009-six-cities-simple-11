@@ -8,6 +8,7 @@ import {store} from '../../store/index';
 import Map from '../../components/map/map';
 import {useEffect} from 'react';
 import LoadingScreen from '../../components/loading-screen/loading-screen';
+import {getCurrentNearOffers, getCurrentOffer} from '../../store/offers-data/selectors';
 
 function RoomPage(): JSX.Element {
   const params = useParams();
@@ -17,8 +18,8 @@ function RoomPage(): JSX.Element {
     store.dispatch(fetchNearOffersAction(Number(params.id)));
   },[params.id]);
 
-  const currentOffer = useAppSelector((state) => state.currentOffer);
-  const nearOffers = useAppSelector((state) => state.currentNearOffers);
+  const currentOffer = useAppSelector(getCurrentOffer);
+  const nearOffers = useAppSelector(getCurrentNearOffers);
 
   if (!currentOffer) {
     return (

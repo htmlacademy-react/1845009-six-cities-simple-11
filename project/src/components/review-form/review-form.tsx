@@ -10,13 +10,16 @@ type propType = {
 
 function ReviewForm({currentId}: propType): JSX.Element {
   const [commentItem, setComment] = useState({text: '', rating: 0});
+  const [commentIsSending, setStatusCommentSending] = useState(false);
   const dispatch = useAppDispatch();
 
   const handleSubmit = async () => {
     const id = currentId;
     const comment = commentItem.text;
     const rating = commentItem.rating;
+    setStatusCommentSending(true);
     await dispatch(fetchSendCommentAction({id, comment, rating}));
+    setStatusCommentSending(false);
     setComment({text: '', rating: 0});
   };
 
@@ -62,7 +65,7 @@ function ReviewForm({currentId}: propType): JSX.Element {
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
         <button className="reviews__submit form__submit button" type="submit"
-          disabled={((commentItem.text.length < 50 || commentItem.text.length > 300) || commentItem.rating === 0)}
+          disabled={((commentItem.text.length < 50 || commentItem.text.length > 300) || commentItem.rating === 0 || commentIsSending)}
         >Submit
         </button>
       </div>

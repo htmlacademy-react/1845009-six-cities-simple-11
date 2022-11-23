@@ -1,21 +1,23 @@
+import React from 'react';
 import {useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {SortTypes} from '../../const';
-import { sortOffersAction } from '../../store/action';
+import {sortOffers} from '../../store/app-process/app-process';
+import {getSortTypes} from '../../store/app-process/selectors';
 
 function Sorting(): JSX.Element {
   const [openedOptions, setOptionsState] = useState(false);
   const optionsHandler = () => {
     setOptionsState(!openedOptions);
   };
-  const activeSort = useAppSelector((state) => state.sortType);
+  const activeSort = useAppSelector(getSortTypes);
   const dispatch = useAppDispatch();
   const sortingHandler = (sortType: SortTypes) => {
     optionsHandler();
     if (sortType === activeSort) {
       return;
     }
-    dispatch(sortOffersAction({sortType}));
+    dispatch(sortOffers({sortType}));
   };
 
   return (
@@ -41,4 +43,4 @@ function Sorting(): JSX.Element {
   );
 }
 
-export default Sorting;
+export default React.memo(Sorting);

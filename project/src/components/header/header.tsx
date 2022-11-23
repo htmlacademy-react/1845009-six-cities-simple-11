@@ -3,9 +3,12 @@ import {useAppDispatch, useAppSelector} from '../../hooks';
 import {AuthorizationStatus} from '../../const';
 import {Link} from 'react-router-dom';
 import {logoutAction} from '../../store/api-actions';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {getUserEmail} from '../../store/app-process/selectors';
 
 function Header(): JSX.Element {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const userEmail = useAppSelector(getUserEmail);
   const dispatch = useAppDispatch();
   const logOutHandle = () => {
     dispatch(logoutAction());
@@ -25,7 +28,7 @@ function Header(): JSX.Element {
                 <li className="header__nav-item user">
                   <div className="header__nav-profile">
                     <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                    <span className="header__user-name user__name">{localStorage.email}</span>
+                    <span className="header__user-name user__name">{userEmail}</span>
                   </div>
                 </li>
                 <li className="header__nav-item">

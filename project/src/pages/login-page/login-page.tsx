@@ -20,7 +20,6 @@ function LoginPage(): JSX.Element {
     evt.preventDefault();
 
     if (emailRef.current !== null && passwordRef.current !== null) {
-      localStorage.email = emailRef.current.value;
       onSubmit({
         email: emailRef.current.value,
         password: passwordRef.current.value

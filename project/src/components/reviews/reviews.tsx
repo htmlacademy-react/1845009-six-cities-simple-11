@@ -2,6 +2,9 @@ import ReviewForm from '../review-form/review-form';
 import {useAppSelector} from '../../hooks';
 import {calculateStarRating} from '../../utils/utils';
 import {AuthorizationStatus} from '../../const';
+import {getCurrentComments} from '../../store/comments-data/selectors';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {formatDate} from '../../utils/utils';
 
 type propType = {
   currentId: number;
@@ -9,9 +12,9 @@ type propType = {
 
 function Reviews({currentId}: propType): JSX.Element {
 
-  const reviews = useAppSelector((state) => state.currentComments);
+  const reviews = useAppSelector(getCurrentComments);
 
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   const reviewsItems = reviews.map((review) => (
     <li className="reviews__item" key={review.id}>
@@ -33,7 +36,7 @@ function Reviews({currentId}: propType): JSX.Element {
         <p className="reviews__text">
           {review.comment}
         </p>
-        <time className="reviews__time" dateTime={review.date}>{review.date}</time>
+        <time className="reviews__time" dateTime={review.date}>{formatDate(review.date)}</time>
       </div>
     </li>
   ));
