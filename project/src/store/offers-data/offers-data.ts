@@ -10,6 +10,7 @@ const initialState: OffersData = {
   offers: [],
   currentOffer: null,
   currentNearOffers: [],
+  hasError: false
 };
 
 export const offersData = createSlice({
@@ -24,6 +25,11 @@ export const offersData = createSlice({
       .addCase(fetchOffersAction.fulfilled, (state, action) => {
         state.offers = action.payload;
         state.isOffersDataLoading = false;
+        state.hasError = false;
+      })
+      .addCase(fetchOffersAction.rejected, (state) => {
+        state.isOffersDataLoading = false;
+        state.hasError = true;
       })
       .addCase(fetchOfferAction.fulfilled, (state, action) => {
         state.currentOffer = action.payload;
