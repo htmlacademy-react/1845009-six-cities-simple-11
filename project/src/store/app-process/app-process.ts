@@ -6,7 +6,6 @@ import {AppProcess} from '../../types/state';
 const initialState: AppProcess = {
   city: cities[1],
   sortType: SortTypes.POPULAR,
-  error: null,
   userEmail: null,
 };
 

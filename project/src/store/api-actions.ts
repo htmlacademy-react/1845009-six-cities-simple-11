@@ -24,7 +24,7 @@ export const fetchOffersAction = createAsyncThunk<Offers, undefined, {
   },
 );
 
-export const fetchOfferAction = createAsyncThunk<RoomOffer, number, {
+export const fetchOfferAction = createAsyncThunk<RoomOffer | null, number, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -32,8 +32,14 @@ export const fetchOfferAction = createAsyncThunk<RoomOffer, number, {
 > (
   'offers/fetchCurrentOffer',
   async (id, {dispatch, extra: api}) => {
-    const {data} = await api.get<RoomOffer>(`${APIRoute.Offers}/${id}`);
-    return data;
+    try {
+      const {data} = await api.get<RoomOffer>(`${APIRoute.Offers}/${id}`);
+      return data;
+    }
+    catch {
+      dispatch(redirectToRoute(AppRoute.NotFound));
+      return null;
+    }
   },
 );
 
