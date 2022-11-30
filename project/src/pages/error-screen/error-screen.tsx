@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppDispatch } from '../../hooks';
+import {useAppDispatch} from '../../hooks';
 import {fetchOffersAction} from '../../store/api-actions';
 
 function ErrorScreen(): JSX.Element {

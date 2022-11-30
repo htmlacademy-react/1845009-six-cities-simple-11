@@ -9,8 +9,6 @@ import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import ScrollToTop from '../scroll-to-top/scroll-to-top';
 import {useAppSelector} from '../../hooks';
 import LoadingScreen from '../loading-screen/loading-screen';
-import HistoryRouter from '../history-route/history-route';
-import browserHistory from '../../browserHistory';
 import {getAuthCheckedStatus} from '../../store/user-process/selectors';
 import {getErrorStatus, getOffersDataLoadingStatus} from '../../store/offers-data/selectors';
 import ErrorScreen from '../../pages/error-screen/error-screen';
@@ -34,35 +32,33 @@ function App(): JSX.Element {
 
   return (
     <HelmetProvider>
-      <HistoryRouter history={browserHistory}>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<PageLayout />}>
+      <ScrollToTop />
+      <Routes>
+        <Route path={AppRoute.Root} element={<PageLayout />}>
+          <Route
+            index
+            element={<MainPage />}
+          />
+          <Route
+            path={AppRoute.NotFound}
+            element={<NotFoundPage />}
+          />
+          <Route path={AppRoute.Offers}>
             <Route
-              index
-              element={<MainPage />}
+              path={AppRoute.Room}
+              element={<RoomPage />}
             />
             <Route
               path={AppRoute.NotFound}
               element={<NotFoundPage />}
             />
-            <Route path={AppRoute.Offers}>
-              <Route
-                path={AppRoute.Room}
-                element={<RoomPage />}
-              />
-              <Route
-                path={AppRoute.NotFound}
-                element={<NotFoundPage />}
-              />
-            </Route>
           </Route>
-          <Route
-            path={AppRoute.Login}
-            element={<LoginPage />}
-          />
-        </Routes>
-      </HistoryRouter>
+        </Route>
+        <Route
+          path={AppRoute.Login}
+          element={<LoginPage />}
+        />
+      </Routes>
     </HelmetProvider>
   );
 }

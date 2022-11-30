@@ -1,4 +1,4 @@
-import {RoomOffer} from '../types/offer';
+import {Offers, RoomOffer} from '../types/offer';
 import {SortTypes} from '../const';
 
 const sortLowToHigh = (offer1: RoomOffer, offer2: RoomOffer): number => {
@@ -37,7 +37,7 @@ const sortByRating = (offer1: RoomOffer, offer2: RoomOffer): number => {
   return -1;
 };
 
-const sortOffers = (offers: RoomOffer[], type: string) => {
+const sortOffers = (offers: Offers, type: string) => {
   switch (type) {
     case SortTypes.POPULAR:
       return offers;

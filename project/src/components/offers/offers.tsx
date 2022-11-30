@@ -4,20 +4,15 @@ import {RoomOffer} from '../../types/offer';
 import PlaceCard from '../place-card/place-card';
 import Sorting from '../sorting/sorting';
 import Map from '../map/map';
-import {getOffersByCity} from '../../utils/utils';
 import NotFoundOffers from '../../components/not-found-offers/not-found-offers';
-import {sortOffers} from '../../utils/sorting';
-import {getSortTypes} from '../../store/app-process/selectors';
-import {getOffers} from '../../store/offers-data/selectors';
-import { getCity } from '../../store/app-process/selectors';
+import {getOffersToRender} from '../../store/offers-data/selectors';
+import {getCity, getSortType} from '../../store/app-process/selectors';
 
 function Offers(): JSX.Element {
   const currentCity = useAppSelector(getCity);
   const [activeCard, setActiveCard] = useState<RoomOffer | undefined>(undefined);
-  const allOffers = useAppSelector(getOffers);
-  let offers = useAppSelector((state) => getOffersByCity(allOffers, currentCity));
-  const sortType = useAppSelector(getSortTypes);
-  offers = sortOffers(offers, sortType);
+  const activeSortType = useAppSelector(getSortType);
+  const offers = useAppSelector(getOffersToRender);
 
   if (offers.length === 0) {
     return <NotFoundOffers currentCity={currentCity.name} />;
@@ -33,7 +28,7 @@ function Offers(): JSX.Element {
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">{offers.length} places to stay in {currentCity.name}</b>
-          <Sorting />
+          <Sorting activeSortType={activeSortType}/>
           <div className="cities__places-list places__list tabs__content">
             {
               offers.map((offer) => (
