@@ -4,6 +4,7 @@ import {configureMockStore} from '@jedmao/redux-mock-store';
 import {createMemoryHistory} from 'history';
 import HistoryRouter from '../history-route/history-route';
 import ReviewForm from './review-form';
+import userEvent from '@testing-library/user-event';
 
 const mockStore = configureMockStore();
 
@@ -14,7 +15,7 @@ const store = mockStore({
 });
 
 describe('Component: ReviewForm', () => {
-  it('should render correctly', () => {
+  it('should render correctly', async () => {
     render(
       <Provider store={store}>
         <HistoryRouter history={history}>
@@ -24,5 +25,9 @@ describe('Component: ReviewForm', () => {
     );
 
     expect(screen.getByText('Submit')).toBeInTheDocument();
+
+    await userEvent.type(screen.getByTestId('comment'), 'Great place!');
+
+    expect(screen.getByDisplayValue(/Great place!/i)).toBeInTheDocument();
   });
 });

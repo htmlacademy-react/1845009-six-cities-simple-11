@@ -51,7 +51,9 @@ function ReviewForm({currentId}: propType): JSX.Element {
           </React.Fragment>
         ))}
       </div>
-      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" value={commentItem.text}
+      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"
+        data-testid="comment"
+        value={commentItem.text}
         onChange={(evt) => {
           setComment({
             ...commentItem,
