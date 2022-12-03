@@ -1,13 +1,13 @@
 import {Icon, Marker} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {RoomOffer} from '../../types/offer';
+import {RoomOffer, Offers} from '../../types/offer';
 import {City} from '../../types/city';
 import {useRef, useEffect} from 'react';
 import useMap from '../../hooks/useMap';
 import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
 
 type PageProps = {
-  offers: RoomOffer[];
+  offers: Offers;
   activeCard?: RoomOffer | undefined;
   city: City;
 }
@@ -48,7 +48,7 @@ function Map({offers, activeCard, city}: PageProps): JSX.Element {
     }
   }, [map, offers, activeCard, city]);
 
-  return <div style={{height: '100%'}} ref={mapRef}></div>;
+  return <div style={{height: '100%'}} ref={mapRef} data-testid="map"></div>;
 }
 
 export default Map;

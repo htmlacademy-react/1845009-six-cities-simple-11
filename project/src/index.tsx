@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {Provider} from 'react-redux';
 import HistoryRouter from './components/history-route/history-route';
-import browserHistory from './browserHistory';
+import browserHistory from './browser-history';
 import App from './components/app/app';
 import {store} from './store/index';
 import {ToastContainer} from 'react-toastify';

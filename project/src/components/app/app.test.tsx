@@ -5,8 +5,8 @@ import {configureMockStore} from '@jedmao/redux-mock-store';
 import HistoryRouter from '../history-route/history-route';
 import {AuthorizationStatus, AppRoute, cities} from '../../const';
 import App from './app';
-import { makeComment, makeOffer, makeOffers } from '../../utils/mocks';
-import { Comments } from '../../types/review';
+import {makeComment, makeOffer, makeOffers} from '../../utils/mocks';
+import {Comments} from '../../types/review';
 
 const mockStore = configureMockStore();
 
@@ -71,6 +71,6 @@ describe('Application Routing', () => {
     render(fakeApp);
 
     expect(screen.getByText(/404 Not Found/i)).toBeInTheDocument();
-    expect(screen.getByText(/На главную/i)).toBeInTheDocument();
+    expect(screen.getByText(/To the main page/i)).toBeInTheDocument();
   });
 });
