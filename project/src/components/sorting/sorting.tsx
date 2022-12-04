@@ -10,12 +10,12 @@ type PageProps = {
 
 function Sorting({activeSortType}: PageProps): JSX.Element {
   const [openedOptions, setOptionsState] = useState(false);
-  const optionsHandler = () => {
+  const optionsHandle = () => {
     setOptionsState(!openedOptions);
   };
   const dispatch = useAppDispatch();
-  const sortingHandler = (sortType: SortTypes) => {
-    optionsHandler();
+  const sortingHandle = (sortType: SortTypes) => {
+    optionsHandle();
     if (sortType === activeSortType) {
       return;
     }
@@ -25,7 +25,7 @@ function Sorting({activeSortType}: PageProps): JSX.Element {
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by &#160;</span>
-      <span className="places__sorting-type" tabIndex={0} onClick={optionsHandler}>
+      <span className="places__sorting-type" tabIndex={0} onClick={optionsHandle}>
         {activeSortType}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
@@ -36,7 +36,7 @@ function Sorting({activeSortType}: PageProps): JSX.Element {
           <li className={`places__option ${activeSortType === sortType ? 'places__option--active' : ''}`}key={sortType}
             tabIndex={0}
             onClick={() => {
-              sortingHandler(sortType);
+              sortingHandle(sortType);
             }}
           >{sortType}
           </li>))}

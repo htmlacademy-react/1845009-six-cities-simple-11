@@ -1,26 +1,40 @@
 import Logo from '../../components/logo/logo';
 import {Helmet} from 'react-helmet-async';
 import {FormEvent, useRef} from 'react';
-import {useAppDispatch} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {loginAction} from '../../store/api-actions';
 import {AuthData} from '../../types/auth-data';
-import {Link} from 'react-router-dom';
+import {Link, Navigate} from 'react-router-dom';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {AppRoute, AuthorizationStatus} from '../../const';
+import {getRandomCity} from '../../utils/utils';
+import {changeCity} from '../../store/app-process/app-process';
 
 function LoginPage(): JSX.Element {
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const randomCity = getRandomCity();
 
   const dispatch = useAppDispatch();
 
-  const onSubmit = (authData: AuthData) => {
+  const onSubmitHandle = (authData: AuthData) => {
     dispatch(loginAction(authData));
   };
+
+  const onRandomCityClickHandle = () => {
+    dispatch(changeCity(randomCity));
+  };
+
+  if (authorizationStatus === AuthorizationStatus.Auth) {
+    return <Navigate to={AppRoute.Root} />;
+  }
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     if (emailRef.current !== null && passwordRef.current !== null) {
-      onSubmit({
+      onSubmitHandle({
         email: emailRef.current.value,
         password: passwordRef.current.value
       });
@@ -64,8 +78,8 @@ function LoginPage(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <Link className="locations__item-link" to="/">
-                <span>Amsterdam</span>
+              <Link className="locations__item-link" to="/" onClick={() => onRandomCityClickHandle()}>
+                <span>{randomCity.name}</span>
               </Link>
             </div>
           </section>

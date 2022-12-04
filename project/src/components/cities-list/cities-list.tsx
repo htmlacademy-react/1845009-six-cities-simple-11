@@ -1,6 +1,5 @@
 import {Link} from 'react-router-dom';
-import {useAppDispatch} from '../../hooks';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {changeCity} from '../../store/app-process/app-process';
 import {cities} from '../../const';
 import {getCity} from '../../store/app-process/selectors';

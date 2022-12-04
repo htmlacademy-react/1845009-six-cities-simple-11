@@ -16,7 +16,7 @@ const nearOffers = [{...makeOffer(), id: 14, city: cities[1]}, {...makeOffer(), 
 const comments: Comments = [{...makeComment(10), hotelId: 13}, {...makeComment(10), hotelId: 13}];
 
 const store = mockStore({
-  USER: {authorizationStatus: AuthorizationStatus.Auth},
+  USER: {authorizationStatus: AuthorizationStatus.NoAuth},
   OFFERS: {offers: fakeOffers, currentOffer: fakeOffer, currentNearOffers: nearOffers, isOffersDataLoading: false},
   COMMENTS: {currentComments: comments},
   APP: {city: cities[1], userEmail: null}
