@@ -18,11 +18,11 @@ function LoginPage(): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  const onSubmit = (authData: AuthData) => {
+  const onSubmitHandle = (authData: AuthData) => {
     dispatch(loginAction(authData));
   };
 
-  const onRandomCityClick = () => {
+  const onRandomCityClickHandle = () => {
     dispatch(changeCity(randomCity));
   };
 
@@ -34,7 +34,7 @@ function LoginPage(): JSX.Element {
     evt.preventDefault();
 
     if (emailRef.current !== null && passwordRef.current !== null) {
-      onSubmit({
+      onSubmitHandle({
         email: emailRef.current.value,
         password: passwordRef.current.value
       });
@@ -78,7 +78,7 @@ function LoginPage(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <Link className="locations__item-link" to="/" onClick={() => onRandomCityClick()}>
+              <Link className="locations__item-link" to="/" onClick={() => onRandomCityClickHandle()}>
                 <span>{randomCity.name}</span>
               </Link>
             </div>
