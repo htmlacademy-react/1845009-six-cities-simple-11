@@ -39,7 +39,7 @@ function Map({offers, activeCard, city}: PageProps): JSX.Element {
 
         marker
           .setIcon(
-            activeCard !== undefined && offer.title === activeCard.title
+            activeCard !== undefined && (offer.location.latitude === activeCard.location.latitude && offer.location.longitude === activeCard.location.longitude)
               ? currentCustomIcon
               : defaultCustomIcon
           )
