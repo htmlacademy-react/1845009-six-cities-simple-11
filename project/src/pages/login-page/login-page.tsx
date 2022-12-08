@@ -9,6 +9,7 @@ import {getAuthorizationStatus} from '../../store/user-process/selectors';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {getRandomCity} from '../../utils/utils';
 import {changeCity} from '../../store/app-process/app-process';
+import {toast} from 'react-toastify';
 
 function LoginPage(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -34,6 +35,10 @@ function LoginPage(): JSX.Element {
     evt.preventDefault();
 
     if (emailRef.current !== null && passwordRef.current !== null) {
+      if (!(String(passwordRef.current.value).match(/^(?=.*\d)(?=.*[A-Za-zА-Яа-я])/gm))) {
+        toast.warn('The password must contain at least 1 number and 1 letter');
+        return;
+      }
       onSubmitHandle({
         email: emailRef.current.value,
         password: passwordRef.current.value
