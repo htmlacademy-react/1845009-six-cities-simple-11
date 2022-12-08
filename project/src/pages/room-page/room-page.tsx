@@ -20,6 +20,7 @@ function RoomPage(): JSX.Element {
 
   const currentOffer = useAppSelector(getCurrentOffer);
   const nearOffers = useAppSelector(getCurrentNearOffers);
+  const maxPhoto = 6;
 
   if (!currentOffer) {
     return (
@@ -36,7 +37,7 @@ function RoomPage(): JSX.Element {
         <div className="property__gallery-container container">
           <div className="property__gallery">
             {
-              images.map((image) => (
+              images.slice(0, maxPhoto).map((image) => (
                 <div className="property__image-wrapper" key={image}>
                   <img className="property__image" src={image} alt="Studio"/>
                 </div>
